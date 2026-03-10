@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pizzeria Napoli</title>
+  <style>
+    /* ================================
+       PIZZERIA NAPOLI — OMA TYYLISIVU
+       Muokkaa vapaasti tätä tiedostoa
+       koskettamatta portfolio-sivuja!
+       ================================ */
+
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lato:wght@300;400;700&display=swap');
+
+    :root {
+      --pz-red:    #c0392b;
+      --pz-cream:  #fdf6e3;
+      --pz-dark:   #1a0a00;
+      --pz-warm:   #8b5e3c;
+      --pz-gold:   #c9a84c;
+      --pz-green:  #2d6a4f;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--pz-cream);
+      color: var(--pz-dark);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+    }
+
+    a { color: var(--pz-red); text-decoration: none; }
+    a:hover { opacity: 0.75; }
+
+    /* ---- NAVIGAATIO ---- */
+    nav {
+      background: var(--pz-dark);
+      padding: 1.1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    nav .pz-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--pz-gold);
+      letter-spacing: 0.04em;
+    }
+
+    nav .pz-nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav .pz-nav-links a {
+      color: rgba(253,246,227,0.7);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav .pz-nav-links a:hover { color: var(--pz-gold); opacity: 1; }
+
+    /* ---- HERO ---- */
+    .pz-hero {
+      background: var(--pz-dark);
+      color: var(--pz-cream);
+      text-align: center;
+      padding: 7rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pz-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pz-hero .pz-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--pz-gold);
+      margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+    }
+
+    .pz-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .pz-hero h1 span { color: var(--pz-red); }
+
+    .pz-hero p {
+      font-size: 1.1rem;
+      color: rgba(253,246,227,0.65);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .pz-cta {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      background: var(--pz-red);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pz-cta:hover { background: #a93226; transform: translateY(-2px); opacity: 1; }
+
+    /* ---- ESITTELY ---- */
+    .pz-about {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .pz-about .pz-section-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pz-warm);
+      margin-bottom: 0.8rem;
+    }
+
+    .pz-about h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: var(--pz-dark);
+    }
+
+    .pz-about p {
+      font-size: 1.05rem;
+      color: #5a4030;
+      line-height: 1.9;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ---- MENU ---- */
+    .pz-menu {
+      background: var(--pz-dark);
+      color: var(--pz-cream);
+      padding: 5rem 2rem;
+    }
+
+    .pz-menu-inner { max-width: 900px; margin: 0 auto; }
+
+    .pz-menu .pz-section-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pz-gold);
+      margin-bottom: 0.6rem;
+      text-align: center;
+    }
+
+    .pz-menu h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .pz-menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .pz-pizza {
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px;
+      padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pz-pizza:hover { border-color: var(--pz-gold); transform: translateY(-3px); }
+
+    .pz-pizza .pz-pizza-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--pz-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .pz-pizza .pz-pizza-desc {
+      font-size: 0.9rem;
+      color: rgba(253,246,227,0.6);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .pz-pizza .pz-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--pz-red);
+    }
+
+    /* ---- YHTEYSTIEDOT ---- */
+    .pz-contact {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .pz-contact .pz-section-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pz-warm);
+      margin-bottom: 0.8rem;
+    }
+
+    .pz-contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pz-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .pz-contact-item .pz-ci-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--pz-warm);
+      margin-bottom: 0.4rem;
+    }
+
+    .pz-contact-item p { font-size: 0.95rem; color: var(--pz-dark); line-height: 1.6; }
+
+    /* ---- FOOTER ---- */
+    footer.pz-footer {
+      background: var(--pz-dark);
+      color: rgba(253,246,227,0.35);
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.82rem;
+    }
+
+    footer.pz-footer a {
+      color: rgba(253,246,227,0.5);
+      border-bottom: 1px solid rgba(253,246,227,0.2);
+      padding-bottom: 0.1rem;
+    }
+
+    /* ---- RESPONSIIVISUUS ---- */
+    @media (max-width: 600px) {
+      nav .pz-nav-links { gap: 1rem; }
+      .pz-menu-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGAATIO -->
+  <nav>
+    <span class="pz-logo">Pizzeria Napoli</span>
+    <ul class="pz-nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#yhteystiedot">Yhteystiedot</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pz-hero">
+    <p class="pz-sub">Autenttinen italialainen pizzeria</p>
+    <h1>Pizzeria<br><span>Napoli</span></h1>
+    <p>Perinteiset pizzat puulämmitteisestä uunista sydämessä kaupunkia.</p>
+    <a href="#menu" class="pz-cta">Katso menu</a>
+  </section>
+
+  <!-- ESITTELY -->
+  <section class="pz-about">
+    <p class="pz-section-tag">Meistä</p>
+    <h2>Maistuu kuin Napolissa</h2>
+    <p>
+      Pizzeria Napoli perustettiin vuonna 2010 unelmasta tuoda aito
+      napolilainen pizza suomalaiseen kaupunkiin. Käytämme vain tuoreimpia
+      raaka-aineita ja perinteistä taikinaa, joka kohoaa 48 tuntia ennen
+      paistamista.
+    </p>
+  </section>
+
+  <!-- MENU -->
+  <section class="pz-menu" id="menu">
+    <div class="pz-menu-inner">
+      <p class="pz-section-tag">Ruokalista</p>
+      <h2>Menu</h2>
+      <div class="pz-menu-grid">
+
+        <div class="pz-pizza">
+          <p class="pz-pizza-name">Margherita</p>
+          <p class="pz-pizza-desc">Tomaattikastike, mozzarella, tuore basilika, oliiviöljy.</p>
+          <p class="pz-price">13 €</p>
+        </div>
+
+        <div class="pz-pizza">
+          <p class="pz-pizza-name">Diavola</p>
+          <p class="pz-pizza-desc">Tomaattikastike, mozzarella, tulinen salami, chiliöljy.</p>
+          <p class="pz-price">15 €</p>
+        </div>
+
+        <div class="pz-pizza">
+          <p class="pz-pizza-name">Quattro Formaggi</p>
+          <p class="pz-pizza-desc">Mozzarella, gorgonzola, parmesaani, pecorino.</p>
+          <p class="pz-price">16 €</p>
+        </div>
+
+        <div class="pz-pizza">
+          <p class="pz-pizza-name">Prosciutto e Funghi</p>
+          <p class="pz-pizza-desc">Tomaattikastike, mozzarella, prosciutto, sienet.</p>
+          <p class="pz-price">16 €</p>
+        </div>
+
+        <div class="pz-pizza">
+          <p class="pz-pizza-name">Napoli Speciale</p>
+          <p class="pz-pizza-desc">Talon oma erikoispizza. Kysy päivän täytteet kassalta.</p>
+          <p class="pz-price">17 €</p>
+        </div>
+
+        <div class="pz-pizza">
+          <p class="pz-pizza-name">Vegana</p>
+          <p class="pz-pizza-desc">Tomaattikastike, kasvismozzarella, grillatut kasvikset.</p>
+          <p class="pz-price">15 €</p>
+        </div>
+
+        <!-- Lisää pizzoja kopioimalla yllä olevaa <div class="pz-pizza">-lohkoa -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- YHTEYSTIEDOT -->
+  <section class="pz-contact" id="yhteystiedot">
+    <p class="pz-section-tag">Löydä meidät</p>
+    <h2>Yhteystiedot</h2>
+    <div class="pz-contact-grid">
+      <div class="pz-contact-item">
+        <p class="pz-ci-label">Osoite</p>
+        <p>Esimerkkikatu 12<br>00100 Helsinki</p>
+      </div>
+      <div class="pz-contact-item">
+        <p class="pz-ci-label">Aukioloajat</p>
+        <p>Ma–Pe 11–21<br>La–Su 12–22</p>
+      </div>
+      <div class="pz-contact-item">
+        <p class="pz-ci-label">Sähköposti</p>
+        <p>info@pizzerianapoli.fi</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="pz-footer">
+    <p>&copy; 2025 Pizzeria Napoli &nbsp;|&nbsp; <a href="skills.html">← Takaisin portfolioon</a></p>
+  </footer>
+
+</body>
+</html>
