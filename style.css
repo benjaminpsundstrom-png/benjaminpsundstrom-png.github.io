@@ -1,0 +1,357 @@
+/* ===========================
+   PORTFOLIO — TYYLITIEDOSTO
+   =========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* --- Muuttujat --- */
+:root {
+  --bg:        #0d0d0d;
+  --surface:   #161616;
+  --border:    #2a2a2a;
+  --accent:    #c8a96e;
+  --text:      #e8e4dc;
+  --muted:     #7a7570;
+  --heading:   'Playfair Display', Georgia, serif;
+  --body:      'DM Sans', sans-serif;
+}
+
+/* --- Nollaus & perus --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* --- Linkit --- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+a:hover { opacity: 0.75; }
+
+/* ===========================
+   NAVIGAATIO
+   =========================== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .logo {
+  font-family: var(--heading);
+  font-size: 1.25rem;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+nav .nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.4rem;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  color: var(--accent);
+  font-family: var(--body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+nav .nav-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  opacity: 1;
+}
+
+/* ===========================
+   HERO / YLÄTUNNISTE
+   =========================== */
+.hero {
+  padding: 6rem 2rem 4rem;
+  max-width: 860px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero .tagline {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+}
+
+.hero h1 {
+  font-family: var(--heading);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.hero .intro {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 560px;
+  line-height: 1.8;
+}
+
+/* ===========================
+   SISÄLTÖALUE
+   =========================== */
+.content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+/* --- Osio --- */
+.section {
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-of-type { border-bottom: none; }
+
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.section h2 {
+  font-family: var(--heading);
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: var(--text);
+}
+
+.section p {
+  color: var(--muted);
+  margin-bottom: 1rem;
+  max-width: 640px;
+}
+
+/* --- Taidot / lista --- */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.skill-tag {
+  padding: 0.35rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--surface);
+  letter-spacing: 0.03em;
+}
+
+/* --- Kokemus / koulutus --- */
+.timeline { list-style: none; }
+
+.timeline li {
+  padding: 1.4rem 0 1.4rem 1.5rem;
+  border-left: 1px solid var(--border);
+  position: relative;
+}
+.timeline li::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  left: -4px;
+  top: 1.8rem;
+}
+
+.timeline .period {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.timeline .role {
+  font-family: var(--heading);
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.timeline .org {
+  font-size: 0.9rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.timeline .desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* ===========================
+   PROJEKTISIVU — KORTIT
+   =========================== */
+.projects-hero {
+  padding: 5rem 2rem 3rem;
+  max-width: 860px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+
+.projects-hero h1 {
+  font-family: var(--heading);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  margin-bottom: 0.8rem;
+}
+
+.projects-hero p {
+  color: var(--muted);
+  max-width: 500px;
+}
+
+.projects-grid {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.project-card .p-year {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+
+.project-card h3 {
+  font-family: var(--heading);
+  font-size: 1.3rem;
+  margin-bottom: 0.7rem;
+  color: var(--text);
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+.project-card .p-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-card .p-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  color: var(--muted);
+}
+
+.project-card .p-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.project-card .p-link:hover { border-color: var(--accent); opacity: 1; }
+
+/* ===========================
+   YHTEYSTIEDOT
+   =========================== */
+.contact {
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.contact .contact-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.contact .email {
+  font-family: var(--heading);
+  font-size: 1.4rem;
+  color: var(--text);
+}
+.contact .email:hover { color: var(--accent); opacity: 1; }
+
+.contact .copy-right {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ===========================
+   RESPONSIIVISUUS
+   =========================== */
+@media (max-width: 600px) {
+  nav { padding: 0.9rem 1rem; }
+  .hero, .content, .projects-hero, .projects-grid, .contact {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .projects-grid { grid-template-columns: 1fr; }
+  .contact { flex-direction: column; align-items: flex-start; }
+}

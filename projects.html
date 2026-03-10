@@ -1,189 +1,90 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projektit — Benjamin Sundström</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --lime:  #c8f135;
-      --coral: #ff5e3a;
-      --sky:   #3af0ff;
-      --ink:   #0f0f0e;
-      --cream: #f5f2ea;
-      --muted: #888070;
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-body:    'DM Sans', sans-serif;
-      --font-mono:    'DM Mono', monospace;
-    }
-    body { background: var(--ink); color: var(--cream); font-family: var(--font-body); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
-
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 3rem;
-      background: rgba(15,15,14,0.85); backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.18em; color: var(--lime); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--cream); }
-
-    /* PAGE HEADER */
-    .page-header {
-      min-height: 42vh; display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 3rem 4rem; position: relative; overflow: hidden;
-    }
-    .page-header-bg {
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 60% 60% at 90% 10%, rgba(58,240,255,0.14) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 50% at 20% 90%, rgba(200,241,53,0.10) 0%, transparent 55%),
-        var(--ink);
-    }
-    .page-header-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; width: 100%; }
-    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; margin-bottom: 2rem; transition: color 0.2s; }
-    .back-link:hover { color: var(--lime); }
-    .section-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sky); margin-bottom: 1rem; }
-    h1 { font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 8rem); letter-spacing: 0.04em; line-height: 0.9; color: var(--cream); }
-
-    /* MAIN CONTENT */
-    main { max-width: 900px; margin: 0 auto; padding: 4rem 3rem 7rem; }
-
-    /* EMPTY STATE */
-    .empty-state {
-      margin-top: 2rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-    }
-
-    .placeholder-card {
-      border: 1.5px dashed rgba(255,255,255,0.1);
-      padding: 2.5rem 2rem;
-      position: relative; overflow: hidden;
-      transition: border-color 0.3s;
-    }
-    .placeholder-card:hover { border-color: rgba(255,255,255,0.25); }
-    .placeholder-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: rgba(255,255,255,0.02);
-    }
-    .card-num {
-      font-family: var(--font-display); font-size: 4rem; letter-spacing: 0.05em;
-      color: rgba(255,255,255,0.05); line-height: 1;
-      margin-bottom: 1.5rem; display: block;
-    }
-    .card-label {
-      font-family: var(--font-mono); font-size: 0.65rem;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(255,255,255,0.2); margin-bottom: 0.4rem;
-    }
-    .card-title {
-      font-family: var(--font-display); font-size: 1.6rem;
-      letter-spacing: 0.04em; color: rgba(255,255,255,0.2);
-    }
-
-    /* Announce banner */
-    .announce {
-      margin-top: 4rem;
-      padding: 2rem;
-      border-left: 3px solid var(--lime);
-      background: rgba(200,241,53,0.04);
-    }
-    .announce h3 { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.05em; color: var(--lime); margin-bottom: 0.4rem; }
-    .announce p { font-size: 0.9rem; color: var(--muted); }
-
-    /* ── WHEN YOU HAVE PROJECTS — use this card template:
-    .project-card {
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: 2rem;
-      transition: border-color 0.25s, transform 0.25s;
-      cursor: pointer;
-    }
-    .project-card:hover { border-color: var(--lime); transform: translateY(-4px); }
-    .project-year { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
-    .project-tech { font-family: var(--font-mono); font-size: 0.68rem; color: var(--sky); margin-left: 1rem; }
-    .project-title { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.04em; color: var(--cream); margin: 0.5rem 0; }
-    .project-desc { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
-    .project-link { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime); text-decoration: none; }
-    ── */
-
-    footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 2rem 3rem; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    footer p { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.25); }
-
-    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-    .page-header-content { animation: fadeUp 0.6s 0.1s both; }
-    .empty-state { animation: fadeUp 0.6s 0.25s both; }
-    .announce { animation: fadeUp 0.6s 0.35s both; }
-
-    @media (max-width: 660px) {
-      nav { padding: 1.1rem 1.5rem; }
-      .page-header { padding-left: 1.5rem; padding-right: 1.5rem; }
-      main { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .empty-state { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projektit — Etunimi Sukunimi</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">BS</a>
-  <ul class="nav-links">
-    <li><a href="index.html#about">Tietoa</a></li>
-    <li><a href="projects.html" class="active">Projektit</a></li>
-    <li><a href="index.html#contact">Yhteystiedot</a></li>
-  </ul>
-</nav>
+  <!-- ===== NAVIGAATIO ===== -->
+  <nav>
+    <span class="logo">Etunimi Sukunimi</span>
+    <a href="index.html" class="nav-btn">← Takaisin</a>
+  </nav>
 
-<div class="page-header">
-  <div class="page-header-bg"></div>
-  <div class="page-header-content">
-    <a href="index.html" class="back-link">← Takaisin</a>
-    <p class="section-label">02 — Projektit</p>
-    <h1>MITÄ OLEN<br>RAKENTANUT</h1>
-  </div>
-</div>
+  <!-- ===== HERO ===== -->
+  <header class="projects-hero">
+    <p class="section-label">Työnäytteet</p>
+    <h1>Projektit</h1>
+    <p>
+      Valikoima töistä ja projekteista, joihin olen osallistunut.
+      Muokkaa kuvausteksti omaksesi.
+    </p>
+  </header>
 
-<main>
-  <!-- Placeholder cards (korvaa omilla projekteillasi) -->
-  <div class="empty-state">
-    <div class="placeholder-card">
-      <span class="card-num">01</span>
-      <p class="card-label">Tulossa pian</p>
-      <p class="card-title">Projekti 1</p>
-    </div>
-    <div class="placeholder-card">
-      <span class="card-num">02</span>
-      <p class="card-label">Tulossa pian</p>
-      <p class="card-title">Projekti 2</p>
-    </div>
-    <div class="placeholder-card">
-      <span class="card-num">03</span>
-      <p class="card-label">Tulossa pian</p>
-      <p class="card-title">Projekti 3</p>
-    </div>
-    <div class="placeholder-card">
-      <span class="card-num">04</span>
-      <p class="card-label">Tulossa pian</p>
-      <p class="card-title">Projekti 4</p>
-    </div>
-  </div>
+  <!-- ===== PROJEKTIRUUDUKKO ===== -->
+  <main class="projects-grid">
 
-  <div class="announce">
-    <h3>TULOSSA PIAN</h3>
-    <p>Projektit ovat valmisteilla. Palaa pian — täältä löydät pian kaikki tekemäni projektit kuvauksineen, teknologioineen ja GitHub-linkkeineen.</p>
-  </div>
-</main>
+    <!-- PROJEKTIKORTTI — kopioi tämä lohko uusille projekteille -->
+    <article class="project-card">
+      <p class="p-year">vvvv</p>
+      <h3>Projektin nimi</h3>
+      <p>
+        Lyhyt kuvaus projektista — mitä tehtiin, mikä oli roolisi ja
+        mikä tekee tästä mielenkiintoisen.
+      </p>
+      <div class="p-tags">
+        <span class="p-tag">Teknologia / työkalu</span>
+        <span class="p-tag">Toinen tagi</span>
+      </div>
+      <!-- Valinnainen linkki — poista jos ei tarvita -->
+      <a href="#" class="p-link">Katso projekti ↗</a>
+    </article>
 
-<footer>
-  <p>© 2025 Benjamin Sundström</p>
-  <p>Helsinki, Finland</p>
-</footer>
+    <article class="project-card">
+      <p class="p-year">vvvv</p>
+      <h3>Projektin nimi</h3>
+      <p>
+        Lyhyt kuvaus projektista — mitä tehtiin, mikä oli roolisi ja
+        mikä tekee tästä mielenkiintoisen.
+      </p>
+      <div class="p-tags">
+        <span class="p-tag">Teknologia / työkalu</span>
+        <span class="p-tag">Toinen tagi</span>
+      </div>
+      <a href="#" class="p-link">Katso projekti ↗</a>
+    </article>
+
+    <article class="project-card">
+      <p class="p-year">vvvv</p>
+      <h3>Projektin nimi</h3>
+      <p>
+        Lyhyt kuvaus projektista — mitä tehtiin, mikä oli roolisi ja
+        mikä tekee tästä mielenkiintoisen.
+      </p>
+      <div class="p-tags">
+        <span class="p-tag">Teknologia / työkalu</span>
+        <span class="p-tag">Toinen tagi</span>
+      </div>
+      <a href="#" class="p-link">Katso projekti ↗</a>
+    </article>
+
+    <!-- Lisää kortteja kopioimalla yllä olevaa <article>-lohkoa -->
+
+  </main>
+
+  <!-- ===== YHTEYSTIEDOT ===== -->
+  <footer>
+    <div class="contact">
+      <div>
+        <p class="contact-label">Ota yhteyttä</p>
+        <a href="mailto:sinun@sahkoposti.fi" class="email">sinun@sahkoposti.fi</a>
+      </div>
+      <p class="copy-right">&copy; 2025 Etunimi Sukunimi</p>
+    </div>
+  </footer>
 
 </body>
 </html>

@@ -1,224 +1,125 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Benjamin Sundström</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --lime:  #c8f135;
-      --coral: #ff5e3a;
-      --sky:   #3af0ff;
-      --ink:   #0f0f0e;
-      --cream: #f5f2ea;
-      --muted: #888070;
-      --font-display: 'Bebas Neue', sans-serif;
-      --font-body:    'DM Sans', sans-serif;
-      --font-mono:    'DM Mono', monospace;
-    }
-    html { scroll-behavior: smooth; }
-    body { background: var(--ink); color: var(--cream); font-family: var(--font-body); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.2rem 3rem;
-      background: rgba(15,15,14,0.85); backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-    .nav-logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.18em; color: var(--lime); text-decoration: none; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--cream); }
-
-    /* HERO */
-    #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 3rem 5rem; position: relative; overflow: hidden; }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 70% 55% at 80% 20%, rgba(200,241,53,0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(58,240,255,0.13) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 50% at 55% 60%, rgba(255,94,58,0.10) 0%, transparent 55%),
-        var(--ink);
-    }
-    .hero-deco {
-      position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
-      font-family: var(--font-display); font-size: clamp(16rem, 28vw, 26rem);
-      line-height: 1; color: rgba(255,255,255,0.03); letter-spacing: -0.04em; user-select: none; z-index: 0;
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; width: 100%; }
-    .hero-tag { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lime); margin-bottom: 1.5rem; }
-    .hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--lime); }
-    h1 { font-family: var(--font-display); font-size: clamp(5rem, 12vw, 11rem); line-height: 0.88; letter-spacing: 0.04em; color: var(--cream); margin-bottom: 2rem; }
-    h1 em { font-style: normal; -webkit-text-stroke: 1.5px var(--cream); color: transparent; }
-    .hero-desc { font-size: 1rem; color: var(--muted); max-width: 460px; margin-bottom: 3rem; line-height: 1.8; }
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    /* BUTTONS */
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.8rem; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; border: none; transition: 0.22s ease; }
-    .btn-lime { background: var(--lime); color: var(--ink); }
-    .btn-lime:hover { background: #d9ff50; }
-    .btn-outline { background: transparent; border: 1.5px solid rgba(255,255,255,0.22); color: var(--cream); }
-    .btn-outline:hover { border-color: var(--cream); background: rgba(255,255,255,0.06); }
-
-    /* SECTIONS */
-    .wrap { max-width: 900px; margin: 0 auto; padding: 7rem 3rem; border-top: 1px solid rgba(255,255,255,0.07); }
-    .section-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--coral); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.08); }
-    h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem); letter-spacing: 0.05em; line-height: 0.95; color: var(--cream); margin-bottom: 3rem; }
-
-    /* ABOUT */
-    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; }
-    .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 0.95rem; }
-    .skills-group { margin-bottom: 1.5rem; }
-    .skills-title { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.6rem; }
-    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .pill { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.3rem 0.75rem; border: 1px solid rgba(255,255,255,0.12); color: var(--cream); transition: border-color 0.2s, color 0.2s; }
-    .pill:hover { border-color: var(--lime); color: var(--lime); }
-
-    /* CONTACT */
-    .contact-cols { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; margin-top: 3rem; }
-    .contact-intro { color: var(--muted); font-size: 0.95rem; line-height: 1.9; margin-bottom: 2rem; }
-    .contact-list { list-style: none; }
-    .contact-list li a { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.07); text-decoration: none; color: var(--cream); font-size: 0.85rem; transition: padding-left 0.2s, color 0.2s; }
-    .contact-list li a:hover { padding-left: 0.5rem; color: var(--lime); }
-    .ctype { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 0.5rem; }
-    .arr { transition: transform 0.2s; color: var(--muted); }
-    .contact-list li a:hover .arr { transform: translate(3px,-3px); color: var(--lime); }
-
-    /* CV CARD */
-    .cv-card { background: rgba(200,241,53,0.06); border: 1.5px solid rgba(200,241,53,0.25); padding: 2rem; }
-    .cv-card h3 { font-family: var(--font-display); font-size: 2.2rem; letter-spacing: 0.06em; color: var(--lime); margin-bottom: 0.5rem; }
-    .cv-card p { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.7; }
-
-    /* FOOTER */
-    footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 2rem 3rem; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    footer p { font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.25); }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
-    .hero-tag  { animation: fadeUp 0.7s 0.1s both; }
-    h1         { animation: fadeUp 0.7s 0.2s both; }
-    .hero-desc { animation: fadeUp 0.7s 0.3s both; }
-    .hero-cta  { animation: fadeUp 0.7s 0.4s both; }
-
-    /* RESPONSIVE */
-    @media (max-width: 660px) {
-      nav { padding: 1.1rem 1.5rem; }
-      #hero, .wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .about-grid, .contact-cols { grid-template-columns: 1fr; gap: 2.5rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimi — Portfolio & CV</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">BS</a>
-  <ul class="nav-links">
-    <li><a href="#about">Tietoa</a></li>
-    <li><a href="projects.html">Projektit</a></li>
-    <li><a href="#contact">Yhteystiedot</a></li>
-  </ul>
-</nav>
+  <!-- ===== NAVIGAATIO ===== -->
+  <nav>
+    <span class="logo">Etunimi Sukunimi</span>
+    <a href="projects.html" class="nav-btn">Projektit →</a>
+  </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-deco">BS</div>
-  <div class="hero-content">
-    <p class="hero-tag">Portfolio — 2025</p>
-    <h1>BENJA<br>MIN<br><em>SUND</em><br>STRÖM</h1>
-    <p class="hero-desc">Ohjelmistokehittäjä Helsingistä. Rakennan toimivia, huolella suunniteltuja sovelluksia frontend- ja backend-puolelle.</p>
-    <div class="hero-cta">
-      <a href="projects.html" class="btn btn-lime">Katso projektit →</a>
-      <a href="#contact" class="btn btn-outline">Ota yhteyttä</a>
-    </div>
-  </div>
-</section>
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <p class="tagline">Portfolio &amp; CV</p>
+    <h1>Etunimi<br>Sukunimi</h1>
+    <p class="intro">
+      Kirjoita tähän lyhyt esittelyteksti itsestäsi — kuka olet, mitä teet
+      ja mikä sinua motivoi. Yksi tai kaksi virkettä riittää.
+    </p>
+  </header>
 
-<!-- ABOUT -->
-<div class="wrap" id="about">
-  <p class="section-label">01 — Tietoa minusta</p>
-  <h2>KOODIN<br>TEKIJÄ</h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>Olen Benjamin Sundström, ohjelmistokehittäjä jolla on intohimo rakentaa laadukkaita sovelluksia. Viihdyn sekä frontend- että backend-kehityksen parissa ja pidän tärkeänä kirjoittaa selkeää, ylläpidettävää koodia.</p>
-      <p><!-- Lisää oma esittelytekstisi tähän. Kerro koulutuksestasi, työkokemuksestasi ja kiinnostuksistasi. --></p>
-      <p>Tykkään haastaa itseni uusilla teknologioilla ja löytää elegantit ratkaisut monimutkaisiin ongelmiin.</p>
-    </div>
-    <div>
-      <div class="skills-group">
-        <p class="skills-title">Frontend</p>
-        <div class="skill-pills">
-          <span class="pill">React</span><span class="pill">Next.js</span><span class="pill">TypeScript</span><span class="pill">CSS</span>
-        </div>
-      </div>
-      <div class="skills-group">
-        <p class="skills-title">Backend</p>
-        <div class="skill-pills">
-          <span class="pill">Node.js</span><span class="pill">Python</span><span class="pill">PostgreSQL</span><span class="pill">REST API</span>
-        </div>
-      </div>
-      <div class="skills-group">
-        <p class="skills-title">Työkalut</p>
-        <div class="skill-pills">
-          <span class="pill">Git</span><span class="pill">Docker</span><span class="pill">Figma</span><span class="pill">Linux</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <!-- ===== PÄÄSISÄLTÖ ===== -->
+  <main class="content">
 
-<!-- CONTACT -->
-<div class="wrap" id="contact">
-  <p class="section-label">02 — Yhteystiedot</p>
-  <h2>OTETAAN<br>YHTEYTTÄ</h2>
-  <div class="contact-cols">
-    <div>
-      <p class="contact-intro">Olen avoin uusille mahdollisuuksille ja yhteistyölle. Löydät minut helpoimmin sähköpostitse tai LinkedIn-kautta.</p>
-      <ul class="contact-list">
+    <!-- TIETOA MINUSTA -->
+    <section class="section">
+      <p class="section-label">Tietoa minusta</p>
+      <h2>Tausta</h2>
+      <p>
+        Kirjoita tähän tarkempi esittely itsestäsi. Voit kertoa esimerkiksi
+        osaamisalueistasi, kiinnostuksenkohteistasi tai siitä, millaisia
+        töitä haet.
+      </p>
+      <p>
+        Toinen kappale on vapaaehtoinen — poista tai täytä tarpeen mukaan.
+      </p>
+    </section>
+
+    <!-- TAIDOT -->
+    <section class="section">
+      <p class="section-label">Osaaminen</p>
+      <h2>Taidot</h2>
+      <div class="skills-grid">
+        <span class="skill-tag">Taito 1</span>
+        <span class="skill-tag">Taito 2</span>
+        <span class="skill-tag">Taito 3</span>
+        <span class="skill-tag">Taito 4</span>
+        <span class="skill-tag">Taito 5</span>
+        <span class="skill-tag">Taito 6</span>
+        <!-- Lisää tai poista tageja tarpeen mukaan -->
+      </div>
+    </section>
+
+    <!-- TYÖKOKEMUS -->
+    <section class="section">
+      <p class="section-label">Kokemus</p>
+      <h2>Työhistoria</h2>
+      <ul class="timeline">
+
         <li>
-          <a href="mailto:benjamin@example.com">
-            <span><span class="ctype">Email</span>benjamin@example.com</span>
-            <span class="arr">↗</span>
-          </a>
+          <p class="period">vvvv – vvvv</p>
+          <p class="role">Tehtävänimike</p>
+          <p class="org">Yrityksen nimi</p>
+          <p class="desc">
+            Lyhyt kuvaus tehtävästä ja vastuista. Mitä teit, mitä opit,
+            mikä oli merkittävintä tässä roolissa?
+          </p>
         </li>
+
         <li>
-          <a href="https://github.com/benjamin-sundstrom" target="_blank">
-            <span><span class="ctype">GitHub</span>github.com/benjamin-sundstrom</span>
-            <span class="arr">↗</span>
-          </a>
+          <p class="period">vvvv – vvvv</p>
+          <p class="role">Tehtävänimike</p>
+          <p class="org">Yrityksen nimi</p>
+          <p class="desc">
+            Kuvaus tehtävästä. Kopioi tämä lohko, jos sinulla on useampia
+            työkokemuksia.
+          </p>
         </li>
-        <li>
-          <a href="https://linkedin.com/in/benjamin-sundstrom" target="_blank">
-            <span><span class="ctype">LinkedIn</span>linkedin.com/in/benjamin-sundstrom</span>
-            <span class="arr">↗</span>
-          </a>
-        </li>
+
+        <!-- Lisää <li>-lohkoja tarpeen mukaan -->
+
       </ul>
-    </div>
-    <div>
-      <div class="cv-card">
-        <h3>LATAA CV</h3>
-        <p>Ansioluetteloni Word-muodossa — sisältää työkokemuksen, koulutuksen ja taidot.</p>
-        <a href="Benjamin_Sundstrom_CV.docx" download class="btn btn-lime" style="width:100%;justify-content:center;">
-          ↓ Lataa CV (.docx)
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<footer>
-  <p>© 2025 Benjamin Sundström</p>
-  <p>Helsinki, Finland</p>
-</footer>
+    <!-- KOULUTUS -->
+    <section class="section">
+      <p class="section-label">Koulutus</p>
+      <h2>Opinnot</h2>
+      <ul class="timeline">
+
+        <li>
+          <p class="period">vvvv – vvvv</p>
+          <p class="role">Tutkinnon nimi / opintolinja</p>
+          <p class="org">Oppilaitoksen nimi</p>
+          <p class="desc">
+            Valinnainen lisätieto — esim. pääaine, erityisalueet tai
+            opinnäytetyön aihe.
+          </p>
+        </li>
+
+        <!-- Lisää lohkoja tarpeen mukaan -->
+
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ===== YHTEYSTIEDOT ===== -->
+  <footer>
+    <div class="contact">
+      <div>
+        <p class="contact-label">Ota yhteyttä</p>
+        <a href="mailto:sinun@sahkoposti.fi" class="email">sinun@sahkoposti.fi</a>
+      </div>
+      <p class="copy-right">&copy; 2025 Etunimi Sukunimi</p>
+    </div>
+  </footer>
 
 </body>
 </html>
