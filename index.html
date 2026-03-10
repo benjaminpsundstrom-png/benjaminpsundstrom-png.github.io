@@ -8,109 +8,82 @@
 </head>
 <body>
 
-  <!-- ===== NAVIGAATIO ===== -->
+  <!-- NAVIGAATIO -->
   <nav>
     <span class="logo">Etunimi Sukunimi</span>
     <a href="projects.html" class="nav-btn">Projektit →</a>
   </nav>
 
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <header class="hero">
-    <p class="tagline">Portfolio &amp; CV</p>
-    <h1>Etunimi<br>Sukunimi</h1>
+    <span class="tagline">Portfolio &amp; CV</span>
+    <h1>Etunimi<br><span>Sukunimi</span></h1>
     <p class="intro">
-      Kirjoita tähän lyhyt esittelyteksti itsestäsi — kuka olet, mitä teet
-      ja mikä sinua motivoi. Yksi tai kaksi virkettä riittää.
+      Kirjoita tähän lyhyt esittelyteksti — kuka olet ja mitä teet.
+      Yksi tai kaksi virkettä riittää.
     </p>
   </header>
 
-  <!-- ===== PÄÄSISÄLTÖ ===== -->
   <main class="content">
 
-    <!-- TIETOA MINUSTA -->
+    <!-- TAUSTA -->
     <section class="section">
-      <p class="section-label">Tietoa minusta</p>
       <h2>Tausta</h2>
       <p>
-        Kirjoita tähän tarkempi esittely itsestäsi. Voit kertoa esimerkiksi
-        osaamisalueistasi, kiinnostuksenkohteistasi tai siitä, millaisia
-        töitä haet.
-      </p>
-      <p>
-        Toinen kappale on vapaaehtoinen — poista tai täytä tarpeen mukaan.
+        Kerro tässä itsestäsi hieman tarkemmin — osaamisesi, kiinnostuksesi
+        tai millaisia töitä haet. Tämä on vapaamuotoinen esittelyteksti.
       </p>
     </section>
 
-    <!-- TAIDOT -->
+    <!-- NAPIT: TAIDOT & PROJEKTIT + TYÖKOKEMUS -->
     <section class="section">
-      <p class="section-label">Osaaminen</p>
-      <h2>Taidot</h2>
-      <div class="skills-grid">
-        <span class="skill-tag">Taito 1</span>
-        <span class="skill-tag">Taito 2</span>
-        <span class="skill-tag">Taito 3</span>
-        <span class="skill-tag">Taito 4</span>
-        <span class="skill-tag">Taito 5</span>
-        <span class="skill-tag">Taito 6</span>
-        <!-- Lisää tai poista tageja tarpeen mukaan -->
+      <div class="nav-cards">
+        <a href="skills.html" class="nav-card skills">
+          <div>
+            <p class="card-label">Katso lisää</p>
+            <p class="card-title">Taidot &amp;<br>Projektit</p>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
+        <a href="work.html" class="nav-card work">
+          <div>
+            <p class="card-label">Katso lisää</p>
+            <p class="card-title">Työ&shy;kokemus</p>
+          </div>
+          <span class="card-arrow">→</span>
+        </a>
       </div>
     </section>
 
-    <!-- TYÖKOKEMUS -->
+    <!-- OPINNOT -->
     <section class="section">
-      <p class="section-label">Kokemus</p>
-      <h2>Työhistoria</h2>
-      <ul class="timeline">
-
-        <li>
-          <p class="period">vvvv – vvvv</p>
-          <p class="role">Tehtävänimike</p>
-          <p class="org">Yrityksen nimi</p>
-          <p class="desc">
-            Lyhyt kuvaus tehtävästä ja vastuista. Mitä teit, mitä opit,
-            mikä oli merkittävintä tässä roolissa?
-          </p>
-        </li>
-
-        <li>
-          <p class="period">vvvv – vvvv</p>
-          <p class="role">Tehtävänimike</p>
-          <p class="org">Yrityksen nimi</p>
-          <p class="desc">
-            Kuvaus tehtävästä. Kopioi tämä lohko, jos sinulla on useampia
-            työkokemuksia.
-          </p>
-        </li>
-
-        <!-- Lisää <li>-lohkoja tarpeen mukaan -->
-
-      </ul>
-    </section>
-
-    <!-- KOULUTUS -->
-    <section class="section">
-      <p class="section-label">Koulutus</p>
       <h2>Opinnot</h2>
-      <ul class="timeline">
+      <ul class="edu-list">
 
         <li>
-          <p class="period">vvvv – vvvv</p>
-          <p class="role">Tutkinnon nimi / opintolinja</p>
-          <p class="org">Oppilaitoksen nimi</p>
-          <p class="desc">
-            Valinnainen lisätieto — esim. pääaine, erityisalueet tai
-            opinnäytetyön aihe.
-          </p>
+          <span class="edu-period">vvvv–vvvv</span>
+          <div>
+            <p class="edu-degree">Tutkinnon nimi / opintolinja</p>
+            <p class="edu-school">Oppilaitoksen nimi</p>
+          </div>
         </li>
 
-        <!-- Lisää lohkoja tarpeen mukaan -->
+        <li>
+          <span class="edu-period">vvvv–vvvv</span>
+          <div>
+            <p class="edu-degree">Tutkinnon nimi / opintolinja</p>
+            <p class="edu-school">Oppilaitoksen nimi</p>
+          </div>
+        </li>
+
+        <!-- Lisää rivejä kopioimalla yllä olevaa <li>-lohkoa -->
 
       </ul>
     </section>
 
   </main>
 
-  <!-- ===== YHTEYSTIEDOT ===== -->
+  <!-- YHTEYSTIEDOT -->
   <footer>
     <div class="contact">
       <div>
