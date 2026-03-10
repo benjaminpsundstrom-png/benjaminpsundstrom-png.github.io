@@ -308,7 +308,7 @@ nav .nav-btn:hover { background: var(--coral); color: #fff; opacity: 1; }
   margin-bottom: 1rem;
   transition: border-color 0.2s, transform 0.2s;
 }
-.work-list li:hover { border-color: var(--coral); transform: scale(1.1) translateX(5px); }
+.work-list li:hover { border-color: var(--coral); transform: scale(1.15) translateX(5px); }
 
 .work-list .period {
   font-family: var(--mono);
@@ -351,7 +351,7 @@ nav .nav-btn:hover { background: var(--coral); color: #fff; opacity: 1; }
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 .project-card:hover {
-  transform: scale(1.1) translateY(-4px);
+  transform: scale(1.15) translateY(-4px);
   border-color: var(--violet);
   box-shadow: 5px 5px 0px var(--violet);
 }
